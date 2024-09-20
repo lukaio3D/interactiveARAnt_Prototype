@@ -55,11 +55,11 @@
 
             await BABYLON.SceneLoader.ImportMeshAsync("Ant", "src/", "240920_AntAnim.glb");
 
-            //Get the Samba animation Group
-            const AntAnim = scene.getAnimationGroupByName("Armature Ant");
+            // //Get the Samba animation Group
+            // const AntAnim = scene.getAnimationGroupByName("Armature Ant");
 
-            //Play the Samba animation
-            AntAnim.start(true, 1.0, AntAnim.from, AntAnim.to, false);
+            // //Play the Samba animation
+            // AntAnim.start(true, 1.0, AntAnim.from, AntAnim.to, false);
 
             const xr = await scene.createDefaultXRExperienceAsync({
                 // ask for an ar-session
