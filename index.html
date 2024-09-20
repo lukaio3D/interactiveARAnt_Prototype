@@ -50,20 +50,11 @@
             const light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(1, 1, 0), scene);
             light.intensity = 3;
 
-            // Add a sphere to the scene
-            // const sphere = BABYLON.MeshBuilder.CreateSphere("sphere", { diameter: 1 }, scene);
-
-            // await BABYLON.SceneLoader.ImportMeshAsync("Ant", "src/", "240920_AntAnim.glb");
-
             // Load hero character and play animation
-            await BABYLON.SceneLoader.ImportMesh("", "https://assets.babylonjs.com/meshes/", "HVGirl.glb", scene, function (newMeshes, particleSystems, skeletons, animationGroups) {
-                var hero = newMeshes[0];
-
-                //Scale the model down        
-                hero.scaling.scaleInPlace(0.1);
+            await BABYLON.SceneLoader.ImportMesh("", "src/", "240920_AntAnim.glb", scene, function (newMeshes, particleSystems, skeletons, animationGroups) {
 
                 //Get the Samba animation Group
-                const sambaAnim = scene.getAnimationGroupByName("Samba");
+                const sambaAnim = scene.getAnimationGroupByName("Armature Ant");
 
                 //Play the Samba animation  
                 sambaAnim.start(true, 1.0, sambaAnim.from, sambaAnim.to, false);
