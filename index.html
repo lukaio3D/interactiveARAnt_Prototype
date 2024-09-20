@@ -55,6 +55,12 @@
 
             await BABYLON.SceneLoader.ImportMeshAsync("Ant", "src/", "240920_AntAnim.glb");
 
+            //Get the Samba animation Group
+            const AntAnim = scene.getAnimationGroupByName("Armature Ant");
+
+            //Play the Samba animation
+            AntAnim.start(true, 1.0, AntAnim.from, AntAnim.to, false);
+
             const xr = await scene.createDefaultXRExperienceAsync({
                 // ask for an ar-session
                 uiOptions: {
@@ -67,16 +73,16 @@
         };
 
         createScene().then(scene => {
-        // Register a render loop to repeatedly render the scene
-        engine.runRenderLoop(function () {
-          scene.render();
-        });
+            // Register a render loop to repeatedly render the scene
+            engine.runRenderLoop(function () {
+                scene.render();
+            });
 
-        // Watch for browser/canvas resize events
-        window.addEventListener("resize", function () {
-          engine.resize();
+            // Watch for browser/canvas resize events
+            window.addEventListener("resize", function () {
+                engine.resize();
+            });
         });
-      });
     </script>
 </body>
 
