@@ -53,12 +53,34 @@
             // Load hero character and play animation
             await BABYLON.SceneLoader.ImportMesh("", "src/", "240920_AntAnim.glb", scene, function (newMeshes, particleSystems, skeletons, animationGroups) {
 
+                const ant = newMeshes[0];
+                ant.position = new BABYLON.Vector3(1, 0, 0);
+
                 //Get the Samba animation Group
                 const sambaAnim = scene.getAnimationGroupByName("Armature Ant");
 
                 //Play the Samba animation  
-                sambaAnim.start(true, 1.0, sambaAnim.from, sambaAnim.to, false);
 
+                sambaAnim.stop(true, 1.0, sambaAnim.from, sambaAnim.to, false);
+
+                // Create a simple box
+                const box = BABYLON.MeshBuilder.CreateBox("box", { size: 0.5 }, scene);
+                box.visibility = 0;
+                box.position = new BABYLON.Vector3(1, 0, 0);
+
+                let i = 0;
+                // Add pointer down event to the box
+                box.actionManager = new BABYLON.ActionManager(scene);
+                box.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickTrigger, function () {
+
+                    if (i === 0) {
+                        sambaAnim.start(true, 1.0, sambaAnim.from, sambaAnim.to, false);
+                        i = 1;
+                    } else {
+                        sambaAnim.stop(true, 1.0, sambaAnim.from, sambaAnim.to, false);
+                        i = 0;
+                    }
+                }));
             });
 
             const xr = await scene.createDefaultXRExperienceAsync({
