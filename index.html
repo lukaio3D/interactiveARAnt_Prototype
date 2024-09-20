@@ -56,14 +56,11 @@
             // await BABYLON.SceneLoader.ImportMeshAsync("Ant", "src/", "240920_AntAnim.glb");
 
             // Load hero character and play animation
-            BABYLON.SceneLoader.ImportMesh("", "https://assets.babylonjs.com/meshes/", "HVGirl.glb", scene, function (newMeshes, particleSystems, skeletons, animationGroups) {
+            await BABYLON.SceneLoader.ImportMesh("", "https://assets.babylonjs.com/meshes/", "HVGirl.glb", scene, function (newMeshes, particleSystems, skeletons, animationGroups) {
                 var hero = newMeshes[0];
 
                 //Scale the model down        
                 hero.scaling.scaleInPlace(0.1);
-
-                //Lock camera on the character 
-                camera1.target = hero;
 
                 //Get the Samba animation Group
                 const sambaAnim = scene.getAnimationGroupByName("Samba");
