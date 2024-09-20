@@ -53,13 +53,25 @@
             // Add a sphere to the scene
             // const sphere = BABYLON.MeshBuilder.CreateSphere("sphere", { diameter: 1 }, scene);
 
-            await BABYLON.SceneLoader.ImportMeshAsync("Ant", "src/", "240920_AntAnim.glb");
+            // await BABYLON.SceneLoader.ImportMeshAsync("Ant", "src/", "240920_AntAnim.glb");
 
-            // //Get the Samba animation Group
-            // const AntAnim = scene.getAnimationGroupByName("Armature Ant");
+            // Load hero character and play animation
+            BABYLON.SceneLoader.ImportMesh("", "https://assets.babylonjs.com/meshes/", "HVGirl.glb", scene, function (newMeshes, particleSystems, skeletons, animationGroups) {
+                var hero = newMeshes[0];
 
-            // //Play the Samba animation
-            // AntAnim.start(true, 1.0, AntAnim.from, AntAnim.to, false);
+                //Scale the model down        
+                hero.scaling.scaleInPlace(0.1);
+
+                //Lock camera on the character 
+                camera1.target = hero;
+
+                //Get the Samba animation Group
+                const sambaAnim = scene.getAnimationGroupByName("Samba");
+
+                //Play the Samba animation  
+                sambaAnim.start(true, 1.0, sambaAnim.from, sambaAnim.to, false);
+
+            });
 
             const xr = await scene.createDefaultXRExperienceAsync({
                 // ask for an ar-session
@@ -68,6 +80,8 @@
                 },
                 optionalFeatures: true,
             });
+
+            scene.debugLayer.show();
 
             return scene;
         };
