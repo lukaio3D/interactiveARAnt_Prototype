@@ -56,6 +56,25 @@
                 const ant = newMeshes[0];
                 ant.position = new BABYLON.Vector3(1, 0, 0);
 
+                // Create 50 ants in a matrix
+                const rows = 5;
+                const cols = 10;
+                for (let row = 0; row < rows; row++) {
+                    for (let col = 0; col < cols; col++) {
+                        const index = row * cols + col;
+                        if (index >= 50) break; // Ensure we only create 50 ants
+
+                        const antClone = ant.clone("ant" + index);
+                        antClone.position = new BABYLON.Vector3(col * 2, 0, row * 2);
+
+                        // Add pointer down event to the ant clone
+                        antClone.actionManager = new BABYLON.ActionManager(scene);
+                        antClone.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPickTrigger, function () {
+                            console.log("Ant " + index + " clicked");
+                        }));
+                    }
+                }
+
                 //Get the Samba animation Group
                 const sambaAnim = scene.getAnimationGroupByName("Armature Ant");
 
@@ -91,7 +110,7 @@
                 optionalFeatures: true,
             });
 
-            // scene.debugLayer.show();
+            scene.debugLayer.show();
 
             return scene;
         };
