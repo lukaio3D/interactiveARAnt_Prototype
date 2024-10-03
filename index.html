@@ -21,11 +21,11 @@
             touch-action: none;
         }
     </style>
-
+    <script src="https://launchar.app/sdk/v1?key=LFLwFg3A0oKEgNiVD0kKlDHASmYasdAZ&redirect=true"></script>
     <script src="https://cdn.babylonjs.com/babylon.js"></script>
     <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
     <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
-    <!-- <script src="https://launchar.app/sdk/v1?key=LFLwFg3A0oKEgNiVD0kKlDHASmYasdAZ&redirect=true"></script> -->
+    
 </head>
 
 <body>
@@ -102,13 +102,13 @@
                 }));
             });
 
-            const xr = await scene.createDefaultXRExperienceAsync({
-                // ask for an ar-session
-                uiOptions: {
-                    sessionMode: "immersive-ar",
-                },
-                optionalFeatures: true,
-            });
+            // const xr = await scene.createDefaultXRExperienceAsync({
+            //     ask for an ar-session
+            //     uiOptions: {
+            //         sessionMode: "immersive-ar",
+            //     },
+            //     optionalFeatures: true,
+            // });
 
             scene.debugLayer.show();
 
